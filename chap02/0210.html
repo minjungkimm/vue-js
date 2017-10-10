@@ -1,0 +1,15 @@
+<!-- 02-08예제 코드 변경 템플릿으로 여러개 요소 묶어 반복 렌더링-->
+    <tbody id="contacts">
+      <template v-for="(contact,index) in contacts">
+       <tr>
+        <td>{{contact.no}}</td>
+        <td>{{contact.name}}</td>
+        <td>{{contact.tel}}</td>
+        <td>{{contact.address}}</td>  
+      </tr>
+      <tr class="divider" v-if="index % 5===4">
+        <td colspan="4"></td>
+      </tr>
+      </template>  
+    </tbody>      
+  
