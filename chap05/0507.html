@@ -1,0 +1,56 @@
+계산형 속성(computed property)은 스타일 적용할 때도 사용가능 하다
+다음 예제는 입력값이 올바른 범위에 포함되지 않을 때 스타일을 적용하는 에제 입니다
+
+이와 같은 계산형 속성 방식으로 메서드를 이용할 수 있다
+메서드가  {[클래스명]:[true/false]} 형태로 값을 리턴한다면 가능하다
+
+05-07 예제
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hello vue js</title>
+  <style>
+      .score{border:solid 1px black;}
+      .warning{background-color:orange;color:purple;}
+      .warnimage{width:18px;height:18px;top:5px;position:relative;}
+  </style>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+  <div id="example">
+    <div>
+        <p>1부터 100까지만 입력가능합니다.</p>
+        <div>
+            점수:<input type="text" class="score"
+            v-model.number="score" v-bind:class="info"/>
+            <!-- input 되어 변경이 감지되는 데이터 값이 score 이며, 반응할 클래스가 info 
+            또한 info 계산형속성의 리턴값인 boolean 값에 따라 warning 이라는 클래스 지정여부가 결정된다-->
+            <!-- 간단하게 여기는 클래스 추가여부 -->
+            <img src="images/error.png" class="warnimage" v-show="info.warning"/>
+            <!--이미지가 변경되는 데이터 값에 따라 display 여부이 바뀌면서 빠르게 출현여부가 결정되어야 한다
+            그러므로 앞에서 배운 v-show가 사용됨, img 태그는 무조건 생성되지만
+            info 계산형 속성의 리턴값에 의해서 출현될지 말지 결정됨-->
+            <!-- 여기는 display 여부 -->
+        </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var vm=new Vue({
+        el:'#example',
+        data:{
+            score:0
+        },
+        computed:{
+            info:function(){
+                if(this.score>=1 && this.score <=100)
+                    return {warning:false};
+                else
+                    return {warning:true};
+            }
+        }
+    });
+  </script>
+</body>
+</html>
