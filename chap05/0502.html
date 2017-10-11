@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hello vue js</title>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+</head>
+<body>
+  <div id="example">
+    <button id="a" v-bind:style="style1" @mouseover.stop="overEvent"
+        @mouseout.stop="outEvent">테스트</button>
+  </div>
+  <!--v-bind:style 로 속성 적용시 이제는 케밥이 아닌 카멜표기법으로 할 것-->
+  <script type="text/javascript">
+    var vm=new Vue({
+        el:'#example',
+        data:{
+            style1:{backgroundColor:'aqua',border:'solid 1px gray',
+            width:'100px',textAlign:'center'}
+        },
+        methods:{
+            overEvent:function(e){
+                this.style1.backgroundColor="purple";
+                this.style1.color="yellow";
+            },
+            outEvent:function(e){
+                this.style1.backgroundColor="aqua";
+                this.style1.color="black";
+            }
+        }
+    });
+  </script>
+</body>
+</html>
